@@ -1,9 +1,9 @@
 import { Application, Response, Request, Router, NextFunction } from 'express'
-import { Linkedin, Mail, Twitter, Auth, User } from '../routes'
+import { Discussion, Comment } from '../routes'
 import { CustomError, ICustomError } from '../custom'
 import { response } from '../utils'
 
-const routers = [Linkedin, Mail, Twitter, Auth, User]
+const routers = [ Discussion, Comment ]
 
 const applyRoutes = (app: Application): void => {
   routers.forEach((router: Router): Application => app.use('/api', router))
