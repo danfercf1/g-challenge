@@ -1,4 +1,4 @@
-import { Application, Response, Request, Router, NextFunction } from 'express'
+import express, { Application, Response, Request, Router, NextFunction } from 'express'
 import { Discussion, Comment } from '../routes'
 import { CustomError, ICustomError } from '../custom'
 import { response } from '../utils'
@@ -6,6 +6,8 @@ import { response } from '../utils'
 const routers = [ Discussion, Comment ]
 
 const applyRoutes = (app: Application): void => {
+  app.use('/ui', express.static('ui'))
+
   routers.forEach((router: Router): Application => app.use('/api', router))
 
   // Handling 404 error
