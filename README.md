@@ -59,3 +59,7 @@ Remove the variables:
 ```bash
 unset MONGO_URI PORT MONGO_INITDB_ROOT_USERNAME MONGO_INITDB_ROOT_PASSWORD MONGO_DB_USER MONGO_DB_PASSWORD MONGO_DB_NAME PROJECT_NAME CORS_DOMAIN NODE_ENV
 ```
+
+## Test the UI
+
+To test the UI you can go to: [http://localhost:3000/ui/](http://localhost:3000/ui/)
