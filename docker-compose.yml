@@ -18,7 +18,7 @@ services:
       #   - "27017:27017"
       command: [--auth]
 
-    ghostcustom.service:
+    ghost.service:
       build:
         context: ./
         dockerfile: Dockerfile
@@ -28,25 +28,9 @@ services:
       restart: always
       environment:
         MONGO_URI: mongodb://${MONGO_DB_USER}:${MONGO_DB_PASSWORD}@db:27017/${MONGO_DB_NAME}
-        SEND_EMAIL: ${SEND_EMAIL}
-        SENDGRID_API_KEY: ${SENDGRID_API_KEY}
-        RESEND_EMAIL_TO: ${RESEND_EMAIL_TO}
-        API_KEY: ${API_KEY}
         NODE_ENV: ${NODE_ENV}
-        TWITTER_KEY: ${TWITTER_KEY}
-        TWITTER_SECRET: ${TWITTER_SECRET}
-        TWITTER_ACCESS_TOKEN: ${TWITTER_ACCESS_TOKEN}
-        TWITTER_ACCESS_SECRET: ${TWITTER_ACCESS_SECRET}
-        LINKEDIN_KEY: ${LINKEDIN_KEY}
-        LINKEDIN_SECRET: ${LINKEDIN_SECRET}
-        LINKEDIN_REDIRECT_URL: ${LINKEDIN_REDIRECT_URL}
-        JWT_SECRET_KEY: ${JWT_SECRET_KEY}
-      # ports:
-      #   - "${PORT}:3000"
-networks:
-  default:
-    external:
-      name: ghost-services
-  
+      ports:
+        - "${PORT}:3000"
+ 
 volumes:
   db-data-prod:

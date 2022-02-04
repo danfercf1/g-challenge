@@ -18,7 +18,7 @@
       "restart": true,
       "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/nodemon",
       "args": [
-        "--debug", "src/index.ts"
+        "--debug", "server/index.ts"
       ],
       "envFile": "${workspaceFolder}/.env",
       "skipFiles": [
