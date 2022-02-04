@@ -2,3 +2,4 @@
 .eslintrc.js
 webpack.config.js
 /docker-entrypoint-initdb.d/*.js
+/ui
