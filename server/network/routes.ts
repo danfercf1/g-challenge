@@ -6,7 +6,12 @@ import { response } from '../utils'
 const routers = [ Discussion, Comment ]
 
 const applyRoutes = (app: Application): void => {
-  app.use('/ui', express.static('ui'))
+  /**
+   * UI server
+   */
+  app.use('/ui', express.static('ui/build'))
+  app.use('/static', express.static('ui/build/static'))
+  app.use('/ui/home', express.static('ui/build'))
 
   routers.forEach((router: Router): Application => app.use('/api', router))
 

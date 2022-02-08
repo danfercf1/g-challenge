@@ -30,10 +30,6 @@ class Discussion {
         return this._getOne()
       case 'store':
         return this._store()
-      // case 'getAllComments':
-      //   return this._getComments()
-      // case 'deleteAllComments':
-      //   return this._deleteComments()
       default:
         return undefined
     }
@@ -118,21 +114,6 @@ class Discussion {
       throw new Error('There was a problem trying to get all the discussions.')
     }
   }
-
-  // private async _getComments(): Promise<IComment[]> {
-  //   const { id } = this._args as DtoDiscussion
-
-  //   try {
-  //     const discussion = await DiscussionModel.findOne({ discussionId: id })
-
-  //     return discussion
-  //   } catch (error: any) {
-  //     console.error(error)
-  //     throw new Error(
-  //       'There was a problem trying to get the requested discussion.'
-  //     )
-  //   }
-  // }
 }
 
 export { Discussion }
