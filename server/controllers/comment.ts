@@ -27,6 +27,8 @@ class Comment {
         return this._delete()
       case 'getAll':
         return this._getAll()
+      case 'getReplies':
+        return this._getReplies()
       case 'getOne':
         return this._getOne()
       case 'store':
@@ -92,13 +94,15 @@ class Comment {
       })
 
       const result = await newComment.save()
-      await DiscussionModel.findByIdAndUpdate(
-        discussionId,
-        {
-          $push: { comments: new Types.ObjectId(result.id) }
-        },
-        { upsert: true }
-      ).exec()
+
+      if (!parent)
+        await DiscussionModel.findByIdAndUpdate(
+          discussionId,
+          {
+            $push: { comments: new Types.ObjectId(result.id) }
+          },
+          { upsert: true }
+        ).exec()
 
       return result
     } catch (error: any) {
@@ -146,6 +150,20 @@ class Comment {
     } catch (error: any) {
       console.error(error)
       throw new Error('There was a problem trying to get all the comments.')
+    }
+  }
+
+  private async _getReplies(): Promise<IComment[]> {
+    const { id } = this._args as DtoComment
+    try {
+      const comments = await CommentModel.find({ parent: id }).populate(
+        'discussion'
+      )
+
+      return comments
+    } catch (error: any) {
+      console.error(error)
+      throw new Error('There was a problem trying to get all the replies by comment Id.')
     }
   }
 }
