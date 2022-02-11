@@ -1,10 +1,10 @@
 import axios from "axios";
 import { Component } from 'react'
 
-class AddComment extends Component {
+class AddReply extends Component {
   constructor(props) {
     super(props)
-    this.state = { reply: '', discussionId: this.props.discussion, savedReply: '' }
+    this.state = { reply: '', discussionId: this.props.discussion, commentId: this.props.comment, savedReply: '' }
   }
 
   render() {
@@ -40,13 +40,13 @@ class AddComment extends Component {
   _saveComment = () => {
     const data = {
       discussion: this.state.discussionId,
+      parent: this.state.commentId,
       text: this.state.reply
     }
     axios
       .post('http://localhost:3000/api/comments/', data)
       .then(response => {
         this.state.savedReply = (!response.error) ? response.data.message.result : ''
-        this.props.updateComments(this.state.savedReply)
         this.setState({
           reply: ''
         })
@@ -55,4 +55,4 @@ class AddComment extends Component {
   }
 }
 
-export default AddComment
+export default AddReply

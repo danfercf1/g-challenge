@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import Comment from './Comment.js'
+import CommentReply from './CommentReply.js'
 
 class CommentList extends Component {
   constructor(props) {
@@ -10,7 +10,14 @@ class CommentList extends Component {
     return (
       <div>
         {this.props.comments.map(c => (
-          <Comment key={c.id} text={c.text} upvote={c.upvote} />
+          <CommentReply
+            key={c._id}
+            user={c.user}
+            text={c.text}
+            upvote={c.upvote}
+            id={c._id}
+            createdTime={c.createdAt}
+          />
         ))}
       </div>
     )
