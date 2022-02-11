@@ -109,4 +109,26 @@ Comment.route('/comments/:id/upvote')
   }
 )
 
+Comment.route('/comments/:id/replies')
+.get(
+  async (req: Request, res: Response): Promise<void> => {
+    const {
+      params: { id }
+    } = req
+    const dto = {
+      id
+    }
+
+    const uc = new CommentC(dto as DtoComment)
+
+    try {
+      const result = await uc.process('getReplies')
+      response(false, { result }, res, 200)
+    } catch (error: any) {
+      console.log(error)
+      response(true, { message: error.message }, res, 500)
+    }
+  }
+)
+
 export { Comment }

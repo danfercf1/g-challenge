@@ -63,3 +63,21 @@ unset MONGO_URI PORT MONGO_INITDB_ROOT_USERNAME MONGO_INITDB_ROOT_PASSWORD MONGO
 ## Test the UI
 
 To test the UI you can go to: [http://localhost:3000/ui/](http://localhost:3000/ui/)
+
+## First Discussion creation
+
+Because the UI does not have the feature to create the first discussion thread we should create it using the API
+
+We can use for example: [https://insomnia.rest/download](https://insomnia.rest/download)
+
+And we just make a POST request to: `http://localhost:3000/api/discussions` with the following JSON payload
+
+```json
+{
+ "subject": "New discussion 1",
+ "status": "Active",
+ "user": "Daniel Candia"
+}
+```
+
+And then you can make comments in the UI [http://localhost:3000/ui/](http://localhost:3000/ui/).
