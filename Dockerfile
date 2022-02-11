@@ -6,6 +6,12 @@ COPY package.json tsconfig.json ./
 
 COPY server/ ./server
 
+COPY ui/ ./ui
+
+RUN cd ui && npm run build
+
+WORKDIR /app
+
 RUN npm i
 
 RUN npm run build

@@ -1,6 +1,8 @@
 import axios from "axios";
 import { Component } from 'react'
 
+import constants from '../constants'
+
 class AddComment extends Component {
   constructor(props) {
     super(props)
@@ -43,9 +45,11 @@ class AddComment extends Component {
       text: this.state.reply
     }
     axios
-      .post('http://localhost:3000/api/comments/', data)
+      .post(`${constants.apiUrl}/api/comments/`, data)
       .then(response => {
-        this.state.savedReply = (!response.error) ? response.data.message.result : ''
+        this.setState({
+          savedReply: (!response.error) ? response.data.message.result : ''
+        })
         this.props.updateComments(this.state.savedReply)
         this.setState({
           reply: ''

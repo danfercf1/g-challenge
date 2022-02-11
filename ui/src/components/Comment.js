@@ -4,6 +4,7 @@ import ReactTimeAgo from 'react-time-ago'
 
 import AddReply from './AddReply'
 import CommentList from './CommentList'
+import constants from '../constants'
 
 class Comment extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class Comment extends Component {
 
   componentDidMount () {
     axios
-      .get(`http://localhost:3000/api/comments/${this.state.commentId}/replies`)
+      .get(`${constants.apiUrl}/api/comments/${this.state.commentId}/replies`)
       .then(response => {
         const replies = response.data.message.result
         const newState = Object.assign({}, this.state, {
@@ -43,7 +44,7 @@ class Comment extends Component {
   _updateVote = () => {
     const commentId = this.props.id
     axios
-      .patch(`http://localhost:3000/api/comments/${commentId}/upvote`)
+      .patch(`${constants.apiUrl}/api/comments/${commentId}/upvote`)
       .then(response => {
         const comment = (!response.error) ? response.data.message.result : ''
         this.setState({
@@ -57,7 +58,7 @@ class Comment extends Component {
     return (
       <div className="comment">
         <div id="comment-user">
-          <span className="user-avatar"><img src="./img/avatar1.png"></img></span>
+          <span className="user-avatar"><img src="./img/avatar1.png" alt="user-avatar"></img></span>
           <span id="user">{this.props.user}</span> *
           <span id="time-ago"><ReactTimeAgo date={this.props.createdTime} locale="en-US"/></span>
         </div>
