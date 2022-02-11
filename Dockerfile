@@ -8,7 +8,7 @@ COPY server/ ./server
 
 COPY ui/ ./ui
 
-RUN cd ui && npm run build
+RUN cd ui && npm install && npm run build
 
 WORKDIR /app
 
