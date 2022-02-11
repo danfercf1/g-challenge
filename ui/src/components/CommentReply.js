@@ -2,6 +2,8 @@ import axios from "axios";
 import { Component } from 'react'
 import ReactTimeAgo from 'react-time-ago'
 
+import constants from '../constants'
+
 class CommentReply extends Component {
   constructor(props) {
     super(props)
@@ -19,7 +21,7 @@ class CommentReply extends Component {
   _updateVote = () => {
     const commentId = this.props.id
     axios
-      .patch(`http://localhost:3000/api/comments/${commentId}/upvote`)
+      .patch(`${constants.apiUrl}/api/comments/${commentId}/upvote`)
       .then(response => {
         const comment = (!response.error) ? response.data.message.result : ''
         this.setState({

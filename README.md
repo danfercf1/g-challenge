@@ -19,17 +19,17 @@ npm run service:debug
 You need to create a `.env` file and configure the below variables inside the `.env` file
 
 ```.env
-MONGO_URI = mongodb://my_user:my_pass@db:27017/sendgrid_dev
-PORT = 3000
-MONGO_INITDB_ROOT_USERNAME = root
-MONGO_INITDB_ROOT_PASSWORD = RXep2NcQ
-MONGO_DB_USER = my_user
-MONGO_DB_PASSWORD = my_pass
-MONGO_DB_NAME = sendgrid_dev
-PROJECT_NAME = sendgrid
-NODE_ENV = development
-#### CORS ####
-CORS_DOMAIN = localhost
+MONGO_URI=mongodb://my_user:my_pass@db:27017/ghost_discussion
+PORT=3000
+MONGO_INITDB_ROOT_USERNAME=root
+MONGO_INITDB_ROOT_PASSWORD=RXep2NcQ
+MONGO_DB_USER=my_user
+MONGO_DB_PASSWORD=my_pass
+MONGO_DB_NAME=ghost_discussion
+PROJECT_NAME=g-challenge
+NODE_ENV=development
+CORS_DOMAIN=localhost
+REACT_APP_API_URL=http://localhost:3000/
 ```
 
 ## How to run the project in production mode
@@ -43,7 +43,7 @@ npm run build
 And then:
 
 ```bash
-docker-compose up
+docker-compose up --build
 ```
 
 ## How to setup the environment variables to run the dist
@@ -57,7 +57,7 @@ export $(xargs < .env)
 Remove the variables:
 
 ```bash
-unset MONGO_URI PORT MONGO_INITDB_ROOT_USERNAME MONGO_INITDB_ROOT_PASSWORD MONGO_DB_USER MONGO_DB_PASSWORD MONGO_DB_NAME PROJECT_NAME CORS_DOMAIN NODE_ENV
+unset MONGO_URI PORT MONGO_INITDB_ROOT_USERNAME MONGO_INITDB_ROOT_PASSWORD MONGO_DB_USER MONGO_DB_PASSWORD MONGO_DB_NAME PROJECT_NAME CORS_DOMAIN NODE_ENV REACT_APP_API_URL
 ```
 
 ## Test the UI

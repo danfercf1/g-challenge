@@ -4,6 +4,7 @@ import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en.json'
 import './App.css'
 import Discussion from './components/Discussion'
+import constants from './constants'
 
 TimeAgo.addDefaultLocale(en)
 
@@ -26,7 +27,7 @@ class App extends Component {
 
   componentDidMount() {
     axios
-      .get('http://localhost:3000/api/discussions/')
+      .get(`${constants.apiUrl}/api/discussions/`)
       .then(response => {
         const discussion = response.data.message.result[0]
         const comments = discussion.comments

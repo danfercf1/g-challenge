@@ -29,6 +29,7 @@ services:
       environment:
         MONGO_URI: mongodb://${MONGO_DB_USER}:${MONGO_DB_PASSWORD}@db:27017/${MONGO_DB_NAME}
         NODE_ENV: ${NODE_ENV}
+        REACT_APP_API_URL_API_URL: ${API_URL}
       ports:
         - "${PORT}:3000"
  
