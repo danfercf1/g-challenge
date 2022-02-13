@@ -53,6 +53,7 @@ class AddReply extends Component {
         this.setState({
           reply: ''
         })
+        this.props.updatereplies(response.data.message.result)
       })
       .catch(error => console.log(error))
   }

@@ -54,6 +54,15 @@ class Comment extends Component {
       .catch(error => console.log(error))
   }
 
+  updatereplies = (reply) => {
+    let replies = this.state.replies
+    replies.push(reply)
+    const newState = Object.assign({}, this.state, {
+      replies
+    })
+    this.setState(newState)
+  }
+
   render() {
     return (
       <div className="comment">
@@ -77,7 +86,7 @@ class Comment extends Component {
               this.state.showReply ? (
                 <AddReply
                   discussion={this.props.discussion}
-                  // updateComments={this.props.updateComments}
+                  updatereplies={this.updatereplies}
                   comment={this.state.commentId}
                 />
               ) : (<div></div>)
